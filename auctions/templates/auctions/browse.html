@@ -1,0 +1,21 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% if listings %}
+<h2 class="text-center">{{ listings.first.get_category_display }}</h2>
+{% for listing in listings %}
+<div class="row">
+    <div class="card my-2 mx-auto bg-light" style="max-width: 85%;">
+        <div class="card-body">
+            <small class="date">{{ listing.list_date }}</small>
+            <h5 class="card-title">{{ listing.title }}</h5><small>${{ listing.price }}</small>
+            <p class="card-text">{{ listing.description }}</p>
+            <a href="{% url 'listing' listing.id %}" class="btn btn-secondary">View</a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<p style="text-align:center">No listings in that category</p>
+{% endif %}
+{% endblock %}

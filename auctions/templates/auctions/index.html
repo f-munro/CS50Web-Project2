@@ -1,0 +1,20 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<h2 class="text-center">Active Listings</h2>
+{% for listing in listings %}
+{% if listing.open == True %}
+<div class="row">
+    <div class="card my-2 mx-auto bg-light" style="max-width: 85%;">
+        <div class="card-body">
+            <p class="date">{{ listing.list_date }}</p>
+            <h5 class="card-title">{{ listing.title }}</h5>
+            <p class="card-text overflow-hidden" style="max-height: 100px">{{ listing.description }}</p>
+            <p><small><b>${{ listing.price }}</b></small></p>
+            <p><a href="{% url 'listing' listing.id %}" class="btn btn-secondary">View</a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+{% endblock %}
