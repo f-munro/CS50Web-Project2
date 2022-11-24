@@ -5,7 +5,7 @@
     <div>
         <form action="{% url 'create' %}" method="post">
             {% csrf_token %}
-            {% for field in form.visible_fields %}
+            {% for field in form %}
                 <p class="form-group">
                 <b class="d-block">{{ field.label }}</b>
                 {{ field }}

@@ -17,6 +17,9 @@ class ListingForm(ModelForm):
         model = Listing
         fields = ['user', 'category', 'title', 'description', 'price']
         # Hide the 'user' input, which will be autofilled
+        labels = {
+            'user': ''
+        }
         widgets = {
             'user': HiddenInput(),
             'title': TextInput(attrs={
@@ -105,10 +108,14 @@ def bid_view(request, listing_id):
                 if request.user == listing.user:
                     form.add_error(
                         'value', "You can't bid on your own listing")
-                elif listing.bids.count() > 0 and form.cleaned_data['value'] \
+                elif listing.bids.count() > 0:
+                    if request.user == listing.bids.last().user:
+                        form.add_error(
+                            'value', "You are already the winning bidder")
+                    elif form.cleaned_data['value'] \
                         <= listing.bids.last().value:
-                    form.add_error('value', ValidationError(
-                        "You must bid higher than the winning bid"))
+                        form.add_error('value', ValidationError(
+                            "You must bid higher than the winning bid"))
                 elif form.cleaned_data['value'] < listing.price:
                     form.add_error('value', ValidationError(
                         "You must bid at least as much as the starting price"))
