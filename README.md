@@ -1,4 +1,6 @@
-# CS50Web-Project2-Commerce
+# CS50 Web Development
+
+## Project2 - Commerce
 
 This is my submission for project 2 of the CS50 Web Development course. 
 This project involved making an auction website in Django. 
