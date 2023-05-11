@@ -11,3 +11,6 @@ I've tried to implement good form validation, on top of Django's already
 good validation, to make sure a user can't bid on their own items, and that only bids 
 higher than the current price are valid. A user can close their own listings, and then
 the highest bidder will be declared the winner.
+
+Video Demo:
+https://youtu.be/kC1FD8mKQ_s
